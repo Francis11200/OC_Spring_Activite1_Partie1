@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "5b2e2c5c-0e70-40c1-aa8b-4d65d0fa6cfa",
+		"name": "CollectionActivitéOCR",
+		"description": "Partie 1 - Affichage de la marge\r\n\r\nLa méthode calculerMargeProduit doit répondre à  une requête GET sur l’URI   /AdminProduits. Les données doivent être récupérées depuis la base de données mises en place dans le projet.\r\n\r\nVoici un exemple de réponse attendue : \r\n{\r\n\"Product{id=1, nom='Ordinateur portable', prix=350}\": 230,\r\n\"Product{id=2, nom='Aspirateur Robot', prix=500}\": 300,\r\n\"Product{id=3, nom='Table de Ping Pong', prix=750}\": 350\r\n}\r\n \r\nPartie 2 - Tri par ordre alphabétique\r\n\r\nLa méthode  trierProduitsParOrdreAlphabetique doit impérativement faire appel à une méthode que vous allez ajouter dans ProductDao  qui utilise le nommage conventionné de Spring Data JPA pour générer automatiquement les requêtes. Voici le résultat à obtenir avec le contenu de la base de données du cours :\r\n{\r\n{\r\n\"id\": 2,\r\n\"nom\": \"Aspirateur Robot\",\r\n\"prix\": 500,\r\n\"prixAchat\": 200\r\n},\r\n{\r\n\"id\": 1,\r\n\"nom\": \"Ordinateur portable\",\r\n\"prix\": 350,\r\n\"prixAchat\": 120\r\n},\r\n{\r\n\"id\": 3,\r\n\"nom\": \"Table de Ping Pong\",\r\n\"prix\": 750,\r\n\"prixAchat\": 400\r\n}\r\n}\r\nPartie 3 - Validation du prix de vente\r\n\r\nSi le prix de vente est de 0, lancez une exception du nom de  ProduitGratuitException  (à créer) qui retournera le bon code HTTP pour ce cas avec un message explicatif que vous définirez.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/AdminProduits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/AdminProduits",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"AdminProduits"
+					]
+				},
+				"description": "Affiche la marge de chaque produit"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/ProduitsTri",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 4,\n        \"nom\": \"Television\",\n        \"prix\": 150\n    }"
+				},
+				"url": {
+					"raw": "localhost:8080/ProduitsTri",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ProduitsTri"
+					]
+				},
+				"description": "Tri les produits par nom et par ordre croissant"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/Produits",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": 6,\n        \"nom\": \"Rollers\",\n        \"prix\": 0,\n        \"prixAchat\": 0\n    }"
+				},
+				"url": {
+					"raw": "localhost:8080/Produits",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Produits"
+					]
+				},
+				"description": "Renvoi un message d'erreur si le prix vaut 0."
+			},
+			"response": []
+		}
+	]
+}
